@@ -30,6 +30,7 @@ public:
 };
 
 int main() {
+
   string moves = "UD";
   Solution s;
   bool result = s.judgeCircle(moves);
