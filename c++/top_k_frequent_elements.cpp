@@ -1,15 +1,22 @@
 #include <iostream>
 #include <vector>
+#include <unordered_map>
+#include <algorithm>
 
 using namespace std;
+
+class MaxHeap {
+public:
+private:
+};
 
 class Solution {
 public:
   vector<int> topKFrequent(vector<int>& nums, int k) {
-    map<int, int> count_nums;
+    unordered_map<int, int> count_nums;
     for (auto iter : nums) {
       if (count_nums.find(iter) == count_nums.end()) {
-        count_nums.insert(pair<int, int>(iter, 1));
+        count_nums.insert(make_pair(iter, 1));
       } else {
         count_nums[iter] += 1;
       }
