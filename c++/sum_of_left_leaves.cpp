@@ -12,13 +12,23 @@ struct TreeNode {
 class Solution {
 public:
   int sumOfLeftLeaves(TreeNode* root) {
-    if (root == NULL) {
+    if (root == NULL || (root->left == NULL && root->right==NULL)) {
       return 0;
     }
+    return recursive_sum_left(root);
   }
 
 private:
-  int recursive_sum_left(TreeNode* node)
+  int recursive_sum_left(TreeNode* node) {
+    if (node == NULL) {
+      return 0;
+    }
+    if (node->left != NULL && node->left->left == NULL && node->left->right == NULL) {
+      return node->left->val + recursive_sum_left(node->right);
+    } else {
+      return recursive_sum_left(node->left) + recursive_sum_left(node->right);
+    }
+  }
 };
 
 int main() {
