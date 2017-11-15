@@ -17,7 +17,6 @@ public:
       int sum = l1->val + l2->val + carry;
       l1->val = sum % 10;
       carry = sum / 10;
-      cout << "sum: " << sum  << " l1: " << l1->val << " carry: " << carry << endl;
       if (l1->next == NULL || l2->next == NULL) {
         break;
       }
@@ -27,14 +26,17 @@ public:
     if (l2->next != NULL) {
       l1->next = l2->next;
     }
-    while (l1 != NULL) {
-      int sum = l1->val + carry;
-      l1->val = sum % 10;
-      carry = sum / 10;
-      if (l1->next == NULL) {
-        break;
-      }
+    if (l1->next != NULL) {
       l1 = l1->next;
+      while (l1 != NULL) {
+        int sum = l1->val + carry;
+        l1->val = sum % 10;
+        carry = sum / 10;
+        if (l1->next == NULL) {
+          break;
+        }
+        l1 = l1->next;
+      }
     }
     if (carry > 0) {
       ListNode* tail_node = new ListNode(carry);
